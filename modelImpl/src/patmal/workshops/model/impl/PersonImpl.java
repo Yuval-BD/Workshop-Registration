@@ -27,4 +27,12 @@ public abstract class PersonImpl implements Person {
     public String getEmail() {
         return email;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof Person p && id.equals(p.getId());
+    }
+
+    @Override
+    public int hashCode() { return id.hashCode(); }
 }
