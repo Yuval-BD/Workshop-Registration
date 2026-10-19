@@ -1,4 +1,4 @@
-package patmal.workshops.logic.impl;
+package patmal.workshops.model.impl;
 
 public class Person implements patmal.workshops.api.model.Person {
     private final String id;
