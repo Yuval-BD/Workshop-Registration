@@ -1,11 +1,13 @@
 package patmal.workshops.model.impl;
 
-public class Person implements patmal.workshops.api.model.Person {
+import patmal.workshops.api.model.Person;
+
+public abstract class PersonImpl implements Person {
     private final String id;
     private final String name;
     private final String email;
 
-    public Person(String id, String name, String email) {
+    protected  PersonImpl(String id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
