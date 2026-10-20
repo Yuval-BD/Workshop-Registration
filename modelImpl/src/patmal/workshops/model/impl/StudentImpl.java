@@ -7,7 +7,7 @@ import patmal.workshops.api.model.Team;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentImpl extends PersonImpl implements Student {
+public class    StudentImpl extends PersonImpl implements Student {
     private Team team;
 
     public StudentImpl(String id, String name, String email) {
@@ -38,5 +38,5 @@ public class StudentImpl extends PersonImpl implements Student {
         return teamMates;
     }
 
-    public void setTeam(Team team) { this.team = team; }
+    void setTeam(Team team) { this.team = team; }
 }

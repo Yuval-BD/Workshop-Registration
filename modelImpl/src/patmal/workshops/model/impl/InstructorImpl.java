@@ -15,9 +15,10 @@ public class InstructorImpl extends PersonImpl implements Instructor {
 
     @Override
     public List<Workshop> getWorkshops() {
-        return new ArrayList<>(workshops);    }
+        return new ArrayList<>(workshops);
+    }
 
-    public void addWorkshops(Workshop  workshop) {
+    public void addWorkshop(Workshop  workshop) {
         if (!workshops.contains(workshop)) {
             workshops.add(workshop);
         }

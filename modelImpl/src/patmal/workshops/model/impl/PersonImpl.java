@@ -35,4 +35,9 @@ public abstract class PersonImpl implements Person {
 
     @Override
     public int hashCode() { return id.hashCode(); }
+
+    @Override
+    public String toString() {
+        return name + " (" + id + ")";
+    }
 }
