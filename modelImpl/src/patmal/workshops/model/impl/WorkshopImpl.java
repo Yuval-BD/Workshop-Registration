@@ -40,8 +40,5 @@ public class WorkshopImpl implements Workshop {
         return name;
     }
 
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
-    }
-
+    void setInstructor(Instructor instructor) { this.instructor = instructor; }
 }

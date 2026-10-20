@@ -24,6 +24,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     private int workshopId = 1;
     private int teamId = 1;
 
+    //*** Creators ***
     @Override
     public Instructor createInstructor(String id, String name, String email) {
         if(instructors.containsKey(id)) {
@@ -92,11 +93,66 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         return team;
     }
 
+    //*** Connectors ***
     @Override
-    public Student getStudent(String s) {
-        return students.get(s);
+    public void associateWorkshopWithInstructor(Instructor instructor, Workshop workshop) {
+        if (instructor == null || workshop == null) {
+            throw new IllegalArgumentException("Instructor and workshop are required");
+        }
+
+        InstructorImpl instructorImpl = instructors.get(instructor.getId());
+        if (instructorImpl == null) {
+            throw new IllegalArgumentException("Instructor with id " + instructor.getId() + " does not exist");
+        }
+
+        WorkshopImpl workshopImpl = workshops.get(workshop.getId());
+        if (workshopImpl == null) {
+            throw new IllegalArgumentException("Workshop with id " + workshop.getId() + " does not exist");
+        }
+
+        instructorImpl.addWorkshop(workshopImpl);
     }
 
+    //*** Queries ***
+    @Override
+    public Instructor getInstructor(String id) {
+        return instructors.get(id);
+    }
+
+    @Override
+    public List<Instructor> getInstructors() {
+        return new ArrayList<>(instructors.values());
+    }
+
+    @Override
+    public Student getStudent(String id) {
+        return students.get(id);
+    }
+
+    @Override
+    public List<Student> getStudents() {
+        return new ArrayList<>(students.values());
+    }
+
+    @Override
+    public Workshop getWorkshop(Integer id) {
+        return workshops.get(id);
+    }
+
+    @Override
+    public List<Workshop> getWorkshops() {
+        return new ArrayList<>(workshops.values());
+    }
+
+    @Override
+    public Team getTeam(Integer id) {
+        return teams.get(id.toString());
+    }
+
+    @Override
+    public List<Team> getTeams() {
+        return new ArrayList<>(teams.values());
+    }
 
 }
 
