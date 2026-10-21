@@ -1,7 +1,11 @@
 package patmal.workshops.model.impl;
 
 import patmal.workshops.api.model.Instructor;
+import patmal.workshops.api.model.Team;
 import patmal.workshops.api.model.Workshop;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkshopImpl implements Workshop {
     private final Integer id;
@@ -41,4 +45,6 @@ public class WorkshopImpl implements Workshop {
     }
 
     void setInstructor(Instructor instructor) { this.instructor = instructor; }
+
+
 }

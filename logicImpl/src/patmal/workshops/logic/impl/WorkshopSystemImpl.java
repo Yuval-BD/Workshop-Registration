@@ -19,12 +19,12 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     private final Map<String, InstructorImpl> instructors = new LinkedHashMap<>();
     private final Map<String, StudentImpl> students = new LinkedHashMap<>();
     private final Map<Integer, WorkshopImpl> workshops = new LinkedHashMap<>();
-    private final Map<String, TeamImpl> teams = new LinkedHashMap<>();
+    private final Map<Integer, TeamImpl> teams = new LinkedHashMap<>();
 
     private int workshopId = 1;
     private int teamId = 1;
 
-    //*** Creators ***
+    //*** Creators ***//
     @Override
     public Instructor createInstructor(String id, String name, String email) {
         if(instructors.containsKey(id)) {
@@ -89,11 +89,11 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         for (StudentImpl s : possibleMembers.values()) {
             team.addStudent(s);
         }
-        teams.put(team.getId().toString(), team);
+        teams.put(team.getId(), team);
         return team;
     }
 
-    //*** Connectors ***
+    //*** Connectors ***//
     @Override
     public void associateWorkshopWithInstructor(Instructor instructor, Workshop workshop) {
         if (instructor == null || workshop == null) {
@@ -113,7 +113,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         instructorImpl.addWorkshop(workshopImpl);
     }
 
-    //*** Queries ***
+    //*** Queries ***//
     @Override
     public Instructor getInstructor(String id) {
         return instructors.get(id);
@@ -146,7 +146,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
 
     @Override
     public Team getTeam(Integer id) {
-        return teams.get(id.toString());
+        return teams.get(id);
     }
 
     @Override
@@ -154,5 +154,37 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         return new ArrayList<>(teams.values());
     }
 
-}
+    @Override
+    public List<Student> getFreeStudents() {
+        List<Student> freeStudents = new ArrayList<>();
+        for (Student student : students.values()) {
+            if (student.getTeamName() == null) {
+                freeStudents.add(student);
+            }
+        }
+        return freeStudents;
+    }
 
+    @Override
+    public List<Student> getStudentsOfInstructor(String id) {
+        List<Student> result = new ArrayList<>();
+        InstructorImpl instructor = instructors.get(id);
+        if (instructor != null) {
+            for (Workshop workshop : instructor.getWorkshops()) {
+                result.addAll(getStudentsOfWorkshop(workshop.getId()));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<Student> getStudentsOfWorkshop(Integer id) {
+        List<Student> result = new ArrayList<>();
+        for (TeamImpl team : teams.values()) {
+            if (team.getWorkshop().getId().equals(id)) {
+                result.addAll(team.getStudents());
+            }
+        }
+        return result;
+    }
+    }
