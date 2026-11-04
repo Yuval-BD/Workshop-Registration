@@ -8,6 +8,10 @@ public abstract class PersonImpl implements Person {
     private final String email;
 
     protected  PersonImpl(String id, String name, String email) {
+        if (id == null) {
+            throw new IllegalArgumentException("id is required");
+        }
+
         this.id = id;
         this.name = name;
         this.email = email;
