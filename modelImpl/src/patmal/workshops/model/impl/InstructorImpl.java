@@ -28,4 +28,12 @@ public class InstructorImpl extends PersonImpl implements Instructor {
         workshops.add(workshop);
         workshop.setInstructor(this);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof InstructorImpl i && this.getId().equals(i.getId());
+    }
+
+    @Override
+    public int hashCode() { return this.getId().hashCode(); }
 }

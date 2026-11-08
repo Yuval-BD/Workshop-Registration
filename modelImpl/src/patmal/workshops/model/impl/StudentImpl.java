@@ -1,5 +1,6 @@
 package patmal.workshops.model.impl;
 
+import patmal.workshops.api.model.Person;
 import patmal.workshops.api.model.Student;
 import patmal.workshops.api.model.Instructor;
 import patmal.workshops.api.model.Team;
@@ -7,7 +8,7 @@ import patmal.workshops.api.model.Team;
 import java.util.ArrayList;
 import java.util.List;
 
-public class    StudentImpl extends PersonImpl implements Student {
+public class StudentImpl extends PersonImpl implements Student {
     private Team team;
 
     public StudentImpl(String id, String name, String email) {
@@ -39,4 +40,13 @@ public class    StudentImpl extends PersonImpl implements Student {
     }
 
     void setTeam(Team team) { this.team = team; }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof StudentImpl s && this.getId().equals(s.getId());
+    }
+
+    @Override
+    public int hashCode() { return this.getId().hashCode(); }
+
 }

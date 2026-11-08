@@ -33,14 +33,6 @@ public abstract class PersonImpl implements Person {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return o instanceof Person p && id.equals(p.getId());
-    }
-
-    @Override
-    public int hashCode() { return id.hashCode(); }
-
-    @Override
     public String toString() {
         return name + " (" + id + ")";
     }
