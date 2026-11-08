@@ -19,14 +19,16 @@ public class InstructorImpl extends PersonImpl implements Instructor {
     }
 
     public void addWorkshop(WorkshopImpl workshop) {
-        if (workshops.contains(workshop)) {
-            return;
+        if (!workshops.contains(workshop)) {
+            workshops.add(workshop);
+            workshop.setInstructor(this);
         }
-        if (workshop.getInstructor() instanceof InstructorImpl old) {
-            old.workshops.remove(workshop);
+    }
+
+    public void removeWorkshop(WorkshopImpl workshop) {
+        if (workshops.remove(workshop)) {
+            workshop.setInstructor(null);
         }
-        workshops.add(workshop);
-        workshop.setInstructor(this);
     }
 
     @Override

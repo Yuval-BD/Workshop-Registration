@@ -107,6 +107,13 @@ public class WorkshopSystemImpl implements WorkshopSystem {
             throw new IllegalArgumentException("Workshop with id " + workshop.getId() + " does not exist");
         }
 
+        Instructor current = workshopImpl.getInstructor();
+        if (current != null) {
+            if (current.equals(instructorImpl)) {
+                return;
+            }
+            instructors.get(current.getId()).removeWorkshop(workshopImpl);
+        }
         instructorImpl.addWorkshop(workshopImpl);
     }
 
