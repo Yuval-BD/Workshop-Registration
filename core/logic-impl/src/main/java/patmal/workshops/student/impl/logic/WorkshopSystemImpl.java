@@ -9,6 +9,7 @@ import patmal.workshops.student.impl.model.InstructorImpl;
 import patmal.workshops.student.impl.model.StudentImpl;
 import patmal.workshops.student.impl.model.WorkshopImpl;
 import patmal.workshops.student.impl.model.TeamImpl;
+import com.sanctionco.jmail.JMail;
 
 import java.io.File;
 import java.util.*;
@@ -211,5 +212,11 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     @Override
     public List<Student> importStudentDataFromFile(File source) {
         return WorkshopSystem.super.importStudentDataFromFile(source);
+    }
+
+    private void validateEmail(String email) {
+        if (email == null || !JMail.isValid(email)) {
+            throw new IllegalArgumentException("Invalid email: " + email);
+        }
     }
 }
