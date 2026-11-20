@@ -13,12 +13,16 @@
     </modules>
 
     <properties>
+        <!-- Java versions -->
         <java.version>25</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependencies versions -->
         <api.version>2.0</api.version>
         <jmail.version>2.2.2</jmail.version>
+        <jackson.version>2.23.0</jackson.version>
     </properties>
 
     <dependencyManagement>
@@ -39,11 +43,6 @@
                 <artifactId>workshop-tester</artifactId>
                 <version>${api.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.sanctionco.jmail</groupId>
-                <artifactId>jmail</artifactId>
-                <version>${jmail.version}</version>
-            </dependency>
 
             <!-- Own modules -->
             <dependency>
@@ -55,6 +54,18 @@
                 <groupId>patmal.workshops.student.impl</groupId>
                 <artifactId>logic-impl</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+
+            <!-- Third-party libraries -->
+            <dependency>
+                <groupId>com.sanctionco.jmail</groupId>
+                <artifactId>jmail</artifactId>
+                <version>${jmail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
