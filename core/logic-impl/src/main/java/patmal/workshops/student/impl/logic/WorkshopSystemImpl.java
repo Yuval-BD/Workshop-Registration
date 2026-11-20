@@ -1,4 +1,4 @@
-package patmal.workshops.logic.impl;
+package patmal.workshops.student.impl.logic;
 
 import patmal.workshops.api.logic.WorkshopSystem;
 import patmal.workshops.api.model.Instructor;
@@ -191,4 +191,4 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         }
         return result;
     }
-    }
+}

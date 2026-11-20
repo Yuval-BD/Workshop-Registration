@@ -1,6 +1,5 @@
 package patmal.workshops.model.impl;
 
-import patmal.workshops.api.model.Person;
 import patmal.workshops.api.model.Student;
 import patmal.workshops.api.model.Instructor;
 import patmal.workshops.api.model.Team;
