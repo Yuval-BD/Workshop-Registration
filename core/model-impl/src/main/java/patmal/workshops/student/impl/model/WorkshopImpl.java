@@ -1,4 +1,4 @@
-package patmal.workshops.model.impl;
+package patmal.workshops.student.impl.model;
 
 import patmal.workshops.api.model.Instructor;
 import patmal.workshops.api.model.Team;
@@ -45,6 +45,4 @@ public class WorkshopImpl implements Workshop {
     }
 
     void setInstructor(Instructor instructor) { this.instructor = instructor; }
-
-
 }
