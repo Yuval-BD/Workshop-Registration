@@ -25,6 +25,11 @@
             <!-- Given interface jars -->
             <dependency>
                 <groupId>patmal.workshops</groupId>
+                <artifactId>logic</artifactId>
+                <version>${api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>patmal.workshops</groupId>
                 <artifactId>model</artifactId>
                 <version>${api.version}</version>
             </dependency>
