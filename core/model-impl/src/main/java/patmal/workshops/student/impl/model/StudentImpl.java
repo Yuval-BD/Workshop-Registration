@@ -1,4 +1,4 @@
-package patmal.workshops.model.impl;
+package patmal.workshops.student.impl.model;
 
 import patmal.workshops.api.model.Student;
 import patmal.workshops.api.model.Instructor;
@@ -49,3 +49,4 @@ public class StudentImpl extends PersonImpl implements Student {
     public int hashCode() { return this.getId().hashCode(); }
 
 }
+
