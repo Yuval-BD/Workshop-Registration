@@ -15,10 +15,10 @@ import java.io.File;
 import java.util.*;
 
 public class WorkshopSystemImpl implements WorkshopSystem {
-    private final Map<String, InstructorImpl> instructors = new HashMap<>();
-    private final Map<String, StudentImpl> students = new HashMap<>();
-    private final Map<Integer, WorkshopImpl> workshops = new HashMap<>();
-    private final Map<Integer, TeamImpl> teams = new HashMap<>();
+    private final Map<String, InstructorImpl> instructors = new LinkedHashMap<>();
+    private final Map<String, StudentImpl> students = new LinkedHashMap<>();
+    private final Map<Integer, WorkshopImpl> workshops = new LinkedHashMap<>();
+    private final Map<Integer, TeamImpl> teams = new LinkedHashMap<>();
 
     private int workshopId = 1;
     private int teamId = 1;
