@@ -5,10 +5,10 @@ import patmal.workshops.api.model.Instructor;
 import patmal.workshops.api.model.Student;
 import patmal.workshops.api.model.Team;
 import patmal.workshops.api.model.Workshop;
-import patmal.workshops.model.impl.InstructorImpl;
-import patmal.workshops.model.impl.StudentImpl;
-import patmal.workshops.model.impl.TeamImpl;
-import patmal.workshops.model.impl.WorkshopImpl;
+import patmal.workshops.student.impl.model.InstructorImpl;
+import patmal.workshops.student.impl.model.StudentImpl;
+import patmal.workshops.student.impl.model.WorkshopImpl;
+import patmal.workshops.student.impl.model.TeamImpl;
 
 import java.util.*;
 
