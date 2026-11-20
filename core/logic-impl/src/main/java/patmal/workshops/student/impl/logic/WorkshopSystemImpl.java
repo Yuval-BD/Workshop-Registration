@@ -10,6 +10,7 @@ import patmal.workshops.student.impl.model.StudentImpl;
 import patmal.workshops.student.impl.model.WorkshopImpl;
 import patmal.workshops.student.impl.model.TeamImpl;
 
+import java.io.File;
 import java.util.*;
 
 public class WorkshopSystemImpl implements WorkshopSystem {
@@ -190,5 +191,25 @@ public class WorkshopSystemImpl implements WorkshopSystem {
             }
         }
         return result;
+    }
+
+    @Override
+    public void exportInstructorsDataToJson(File file) {
+        throw new UnsupportedOperationException("not implemented yet");
+    }
+
+    @Override
+    public void exportStudentsDataToJson(File file) {
+        throw new UnsupportedOperationException("not implemented yet");
+    }
+
+    @Override
+    public void exportTeamsDataToJson(File file) {
+        throw new UnsupportedOperationException("not implemented yet");
+    }
+
+    @Override
+    public List<Student> importStudentDataFromFile(File source) {
+        return WorkshopSystem.super.importStudentDataFromFile(source);
     }
 }
