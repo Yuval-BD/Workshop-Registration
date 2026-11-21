@@ -220,7 +220,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     //*** Import from json ***//
     @Override
     public List<Student> importStudentDataFromFile(File source) {
-        return WorkshopSystem.super.importStudentDataFromFile(source);
+        throw new UnsupportedOperationException("not implemented yet");
     }
 
     //*** Helpers ***//
