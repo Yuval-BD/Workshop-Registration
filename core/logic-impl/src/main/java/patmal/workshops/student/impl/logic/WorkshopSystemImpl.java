@@ -5,6 +5,8 @@ import patmal.workshops.api.model.Instructor;
 import patmal.workshops.api.model.Student;
 import patmal.workshops.api.model.Team;
 import patmal.workshops.api.model.Workshop;
+import patmal.workshops.api.model.Person;
+
 import patmal.workshops.student.impl.model.InstructorImpl;
 import patmal.workshops.student.impl.model.StudentImpl;
 import patmal.workshops.student.impl.model.WorkshopImpl;
@@ -236,5 +238,13 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+    }
+
+    private Map<String, Object> personToJson(Person p) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("id", p.getId());
+        m.put("name", p.getName());
+        m.put("email", p.getEmail());
+        return m;
     }
 }
