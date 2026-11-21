@@ -48,6 +48,8 @@ public class WorkshopSystemImpl implements WorkshopSystem {
 
         InstructorImpl instructor = new InstructorImpl(id, name, email);
         instructors.put(id, instructor);
+
+        logger.info("Created instructor {} ({})", id, name);
         return instructor;
     }
 
@@ -61,6 +63,8 @@ public class WorkshopSystemImpl implements WorkshopSystem {
 
         StudentImpl student = new StudentImpl(id, name, email);
         students.put(id, student);
+
+        logger.info("Created student  {} ({})", id, name);
         return student;
     }
 
@@ -69,6 +73,8 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         WorkshopImpl workshop = new WorkshopImpl(workshopId, name, description);
         workshops.put(workshop.getId(), workshop);
         workshopId++;
+
+        logger.info("Created workshop {} ({})", workshop.getId(), name);
         return workshop;
     }
 
@@ -107,6 +113,8 @@ public class WorkshopSystemImpl implements WorkshopSystem {
             team.addStudent(s);
         }
         teams.put(team.getId(), team);
+
+        logger.info("Created team {} ({}) in workshop {}", team.getId(), name, workshopImpl.getId());
         return team;
     }
 
@@ -250,6 +258,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     //*** Helpers ***//
     private void validateEmail(String email) {
         if (email == null || !JMail.isValid(email)) {
+            logger.warn("Rejected creation: invalid email '{}'", email);
             throw new IllegalArgumentException("Invalid email: " + email);
         }
     }
