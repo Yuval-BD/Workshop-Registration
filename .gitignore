@@ -4,3 +4,7 @@ target/
 *.iml
 *.ipr
 *.iws
+
+instructors.json
+students.json
+teams.json

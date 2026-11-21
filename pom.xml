@@ -24,6 +24,7 @@
         <jmail.version>2.2.2</jmail.version>
         <jackson.version>2.23.0</jackson.version>
         <log4j.version>2.26.1</log4j.version>
+        <shade.plugin.version>3.6.2</shade.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -77,4 +78,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${shade.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
