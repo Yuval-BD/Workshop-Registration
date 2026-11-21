@@ -9,9 +9,14 @@ import patmal.workshops.student.impl.model.InstructorImpl;
 import patmal.workshops.student.impl.model.StudentImpl;
 import patmal.workshops.student.impl.model.WorkshopImpl;
 import patmal.workshops.student.impl.model.TeamImpl;
+
 import com.sanctionco.jmail.JMail;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.*;
 
 public class WorkshopSystemImpl implements WorkshopSystem {
@@ -22,6 +27,8 @@ public class WorkshopSystemImpl implements WorkshopSystem {
 
     private int workshopId = 1;
     private int teamId = 1;
+
+    private final ObjectMapper jsonMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
     //*** Creators ***//
     @Override
@@ -194,6 +201,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         return result;
     }
 
+    //*** Export to json ***//
     @Override
     public void exportInstructorsDataToJson(File file) {
         throw new UnsupportedOperationException("not implemented yet");
@@ -209,14 +217,24 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         throw new UnsupportedOperationException("not implemented yet");
     }
 
+    //*** Import from json ***//
     @Override
     public List<Student> importStudentDataFromFile(File source) {
         return WorkshopSystem.super.importStudentDataFromFile(source);
     }
 
+    //*** Helpers ***//
     private void validateEmail(String email) {
         if (email == null || !JMail.isValid(email)) {
             throw new IllegalArgumentException("Invalid email: " + email);
+        }
+    }
+
+    private void writeJsonToFile(File file, Object data) {
+        try {
+            jsonMapper.writeValue(file, data);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
         }
     }
 }
