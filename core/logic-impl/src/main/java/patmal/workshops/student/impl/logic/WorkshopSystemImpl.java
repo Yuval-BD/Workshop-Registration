@@ -17,6 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +35,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     private int teamId = 1;
 
     private final ObjectMapper jsonMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    private static final Logger logger = LogManager.getLogger(WorkshopSystemImpl.class);
 
     //*** Creators ***//
     @Override
