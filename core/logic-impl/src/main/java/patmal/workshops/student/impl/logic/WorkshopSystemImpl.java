@@ -281,6 +281,26 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     }
 
     private ObjectNode workshopNodeWithTeams(Workshop workshop) {
+        ObjectNode node = workshopDetails(workshop, false);
+        ArrayNode teamsNode = jsonMapper.createArrayNode();
+        for (TeamImpl team : teamsOfWorkshop(workshop)) {
+            teamsNode.add(teamNodeWithStudents(team));
+        }
+        node.set("teams", teamsNode);
+        return node;
+    }
+
+    private List<TeamImpl> teamsOfWorkshop(Workshop workshop) {
+        List<TeamImpl> result = new ArrayList<>();
+        for (TeamImpl team : teams.values()) {
+            if (team.getWorkshop().getId().equals(workshop.getId())) {
+                result.add(team);
+            }
+        }
+        return result;
+    }
+
+    private ObjectNode teamNodeWithStudents(Team team) {
         //TODO
     }
 }
