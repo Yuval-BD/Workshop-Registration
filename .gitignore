@@ -8,3 +8,4 @@ target/
 instructors.json
 students.json
 teams.json
+dependency-reduced-pom.xml
