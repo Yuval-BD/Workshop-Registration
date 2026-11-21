@@ -37,6 +37,8 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     //*** Creators ***//
     @Override
     public Instructor createInstructor(String id, String name, String email) {
+        validateEmail(email);
+
         if (instructors.containsKey(id)) {
             throw new IllegalArgumentException("Instructor with id " + id + " already exists");
         }
@@ -48,6 +50,8 @@ public class WorkshopSystemImpl implements WorkshopSystem {
 
     @Override
     public Student createStudent(String id, String name, String email) {
+        validateEmail(email);
+
         if (students.containsKey(id)) {
             throw new IllegalArgumentException("Student with id " + id + " already exists");
         }
