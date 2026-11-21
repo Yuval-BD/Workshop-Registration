@@ -301,6 +301,14 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     }
 
     private ObjectNode teamNodeWithStudents(Team team) {
+        ObjectNode node = jsonMapper.createObjectNode();
+        node.put("id", team.getId());
+        node.put("name", team.getName());
+        node.set("students", studentsArray(team));
+        return node;
+    }
+
+    private ArrayNode studentsArray(Team team) {
         //TODO
     }
 }
