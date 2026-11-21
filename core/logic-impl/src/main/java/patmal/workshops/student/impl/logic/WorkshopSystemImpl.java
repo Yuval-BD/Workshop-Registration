@@ -247,4 +247,16 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         m.put("email", p.getEmail());
         return m;
     }
+
+    private Map<String, Object> workshopToJson(Workshop w, boolean withInstructor) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("id", w.getId());
+        m.put("name", w.getName());
+        m.put("description", w.getDescription());
+        if (withInstructor) {
+            Instructor i = w.getInstructor();
+            m.put("instructor", i == null ? null : personJson(i));
+        }
+        return m;
+    }
 }
