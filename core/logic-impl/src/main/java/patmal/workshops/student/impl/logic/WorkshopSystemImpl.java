@@ -15,6 +15,8 @@ import patmal.workshops.student.impl.model.TeamImpl;
 import com.sanctionco.jmail.JMail;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +37,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     //*** Creators ***//
     @Override
     public Instructor createInstructor(String id, String name, String email) {
-        if(instructors.containsKey(id)) {
+        if (instructors.containsKey(id)) {
             throw new IllegalArgumentException("Instructor with id " + id + " already exists");
         }
 
@@ -46,7 +48,7 @@ public class WorkshopSystemImpl implements WorkshopSystem {
 
     @Override
     public Student createStudent(String id, String name, String email) {
-        if(students.containsKey(id)) {
+        if (students.containsKey(id)) {
             throw new IllegalArgumentException("Student with id " + id + " already exists");
         }
 
@@ -240,23 +242,27 @@ public class WorkshopSystemImpl implements WorkshopSystem {
         }
     }
 
-    private Map<String, Object> personToJson(Person p) {
-        Map<String, Object> m = new LinkedHashMap<>();
-        m.put("id", p.getId());
-        m.put("name", p.getName());
-        m.put("email", p.getEmail());
-        return m;
+    private ObjectNode personDetails(Person person) {
+        ObjectNode node = jsonMapper.createObjectNode();
+        node.put("id", person.getId());
+        node.put("name", person.getName());
+        node.put("email", person.getEmail());
+        return node;
     }
 
-    private Map<String, Object> workshopToJson(Workshop w, boolean withInstructor) {
-        Map<String, Object> m = new LinkedHashMap<>();
-        m.put("id", w.getId());
-        m.put("name", w.getName());
-        m.put("description", w.getDescription());
+    private ObjectNode workshopDetails(Workshop workshop, boolean withInstructor) {
+        ObjectNode node = jsonMapper.createObjectNode();
+        node.put("id", workshop.getId());
+        node.put("name", workshop.getName());
+        node.put("description", workshop.getDescription());
         if (withInstructor) {
-            Instructor i = w.getInstructor();
-            m.put("instructor", i == null ? null : personJson(i));
+            Instructor instructor = workshop.getInstructor();
+            if (instructor == null) {
+                node.putNull("instructor");
+            } else {
+                node.set("instructor", personDetails(instructor));
+            }
         }
-        return m;
+        return node;
     }
 }
