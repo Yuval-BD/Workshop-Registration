@@ -221,7 +221,12 @@ public class WorkshopSystemImpl implements WorkshopSystem {
 
     @Override
     public void exportStudentsDataToJson(File file) {
-        throw new UnsupportedOperationException("not implemented yet");
+        Map<String, Team> teamOf = teamByStudentId();
+        ArrayNode result = jsonMapper.createArrayNode();
+        for (StudentImpl student : students.values()) {
+            result.add(studentNodeWithTeam(student, teamOf.get(student.getId())));
+        }
+        writeJsonToFile(file, result);
     }
 
     @Override
@@ -318,5 +323,38 @@ public class WorkshopSystemImpl implements WorkshopSystem {
             arr.add(personDetails(student));
         }
         return arr;
+    }
+
+    private Map<String, Team> teamByStudentId() {
+        Map<String, Team> teamOf = new HashMap<>();
+        for (TeamImpl team : teams.values()) {
+            for (Student student : team.getStudents()) {
+                teamOf.put(student.getId(), team);
+            }
+        }
+        return teamOf;
+    }
+
+    private ObjectNode studentNodeWithTeam(Student student, Team team) {
+        ObjectNode node = personDetails(student);
+        if (team == null) {
+            node.putNull("team");
+        } else {
+            node.set("team", teamSummary(team));
+        }
+        return node;
+    }
+
+    private ObjectNode teamSummary(Team team) {
+        ObjectNode node = jsonMapper.createObjectNode();
+        node.put("id", team.getId());
+        node.put("name", team.getName());
+        ArrayNode ids = jsonMapper.createArrayNode();
+        for (Student student : team.getStudents()) {
+            ids.add(student.getId());
+        }
+        node.set("studentIds", ids);
+        node.set("workshop", workshopDetails(team.getWorkshop(), true));
+        return node;
     }
 }
