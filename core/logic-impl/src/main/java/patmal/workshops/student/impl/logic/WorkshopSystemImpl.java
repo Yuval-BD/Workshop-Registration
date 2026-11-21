@@ -309,6 +309,10 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     }
 
     private ArrayNode studentsArray(Team team) {
-        //TODO
+        ArrayNode arr = jsonMapper.createArrayNode();
+        for (Student student : team.getStudents()) {
+            arr.add(personDetails(student));
+        }
+        return arr;
     }
 }
