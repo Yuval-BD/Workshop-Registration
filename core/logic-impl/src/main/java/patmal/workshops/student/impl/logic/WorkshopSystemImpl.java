@@ -208,7 +208,11 @@ public class WorkshopSystemImpl implements WorkshopSystem {
     //*** Export to json ***//
     @Override
     public void exportInstructorsDataToJson(File file) {
-        throw new UnsupportedOperationException("not implemented yet");
+        ArrayNode result = jsonMapper.createArrayNode();
+        for (InstructorImpl instructor : instructors.values()) {
+            result.add(instructorNodeWithWorkshops(instructor));
+        }
+        writeJsonToFile(file, result);
     }
 
     @Override
@@ -264,5 +268,9 @@ public class WorkshopSystemImpl implements WorkshopSystem {
             }
         }
         return node;
+    }
+
+    private ObjectNode instructorNodeWithWorkshops(Instructor instructor) {
+        //TODO
     }
 }
